@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-
 import { AmbientSound } from "@/components/ambient-sound";
 import Timer from "@/components/timer";
 import TaskList from "@/components/task-list";

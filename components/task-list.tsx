@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Plus, Edit2 } from "lucide-react";
+import { Plus } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 interface Task {

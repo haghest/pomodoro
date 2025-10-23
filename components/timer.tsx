@@ -143,7 +143,7 @@ export default function Timer() {
           </p>
 
           <p className="mt-2 text-xs text-muted-foreground">
-            🔥 Focus sessions today: {focusSessions}
+            🔥 Streak: {focusSessions}
           </p>
         </CardContent>
       </Card>
