@@ -12,9 +12,9 @@ import {
 } from "@/components/ui/dialog";
 import { useTheme } from "next-themes";
 import { useAmbientSound } from "@/hooks/useAmbientSound";
-import { Settings, Volume2, Sun, Moon, Laptop, Ellipsis } from "lucide-react";
+import { Settings2, Volume2, Sun, Moon, Laptop, Ellipsis } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import Footer from "./footer";
 const sounds = [
   { id: "rain", label: "🌧️ Rain" },
   { id: "cafe", label: "☕ Cafe" },
@@ -65,7 +65,7 @@ export function SettingsModal() {
   }, [sound, isPlaying]);
 
   return (
-    <div className="flex justify-cente">
+    <div className="flex justify-center items-center">
       <Dialog>
         <DialogTrigger asChild>
           <Button
@@ -73,7 +73,7 @@ export function SettingsModal() {
             className="flex items-center gap-2"
             size="icon"
           >
-            <Settings className="size-4" />
+            <Settings2 />
           </Button>
         </DialogTrigger>
 
@@ -167,6 +167,8 @@ export function SettingsModal() {
                 </Button>
               </div>
             </div>
+
+            <Footer />
           </div>
         </DialogContent>
       </Dialog>

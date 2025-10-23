@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import { updateDailyLog } from "@/hooks/useDailyLog";
 
 type Mode = "focus" | "break" | "longBreak";
 
@@ -104,14 +103,14 @@ export function useTimer(
           let body = "";
 
           if (mode === "focus") {
-            title = "Fokus Selesai!";
-            body = "Waktunya istirahat sebentar ☕";
+            title = "Focus Finished!";
+            body = "Time for a short break ☕";
           } else if (mode === "break") {
-            title = "Break Selesai!";
-            body = "Yuk kembali fokus 💻";
+            title = "Break Finished!";
+            body = "Time to get back to focus 💻";
           } else {
-            title = "Long Break Selesai!";
-            body = "Waktunya kembali produktif! 🚀";
+            title = "Long Break Finished!";
+            body = "Time to get productive again! 🚀";
           }
 
           new Notification(title, {

@@ -1,5 +1,7 @@
 export default function Footer() {
   return (
-    <footer className="absolute bottom-3 text-xs select-none">Haghest</footer>
+    <footer className="text-xs text-center">
+      Pomodoro project by <span className="font-semibold">nuvantara</span>
+    </footer>
   );
 }

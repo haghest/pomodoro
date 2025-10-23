@@ -4,10 +4,9 @@ import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Plus } from "lucide-react";
+import { Plus, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { toast } from "sonner"; // ✅ gunakan sonner
-import { updateDailyLog } from "@/hooks/useDailyLog";
 
 interface Task {
   id: number;
@@ -49,8 +48,8 @@ export default function TaskList() {
   useEffect(() => {
     const allDone = tasks.length > 0 && tasks.every((t) => t.done);
     if (allDone && !hasShownToastRef.current) {
-      toast.success("🎉 Semua tugas selesai!", {
-        description: "Kerja bagus, kamu bisa istirahat sebentar ☕",
+      toast.success("🎉 All task completed!", {
+        description: "Great job, you can take a short break",
       });
       hasShownToastRef.current = true;
     }
@@ -124,7 +123,7 @@ export default function TaskList() {
       </div>
 
       {/* Daftar task */}
-      <ul className="mt-6 space-y-2">
+      <ul className="mt-4 space-y-2 w-full">
         <AnimatePresence>
           {tasks.map((task) => (
             <motion.li
@@ -134,7 +133,7 @@ export default function TaskList() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -10 }}
               transition={{ duration: 0.2 }}
-              className="flex items-center justify-between bg-secondary/40 dark:bg-secondary/20 rounded-2xl p-3"
+              className="flex items-center justify-between bg-secondary dark:bg-secondary rounded-xl px-3 py-2"
             >
               <div className="flex items-center gap-2 w-full">
                 <Checkbox
@@ -160,7 +159,7 @@ export default function TaskList() {
                   />
                 ) : (
                   <span
-                    className={`flex-1 text-sm md:text-base cursor-text ${
+                    className={`flex-1 text-sm  cursor-text truncate w-4 ${
                       task.done
                         ? "line-through text-muted-foreground"
                         : "text-foreground"
@@ -176,7 +175,7 @@ export default function TaskList() {
                 size="icon"
                 onClick={() => removeTask(task.id)}
               >
-                ✕
+                <X />
               </Button>
             </motion.li>
           ))}

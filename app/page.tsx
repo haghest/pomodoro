@@ -15,12 +15,12 @@ export default function PomodoroPage() {
     //         : "bg-white dark:bg-green-900"
     //   }`}
     // >
-    // <motion.div className="sm:max-w-[450px]  w-full px-6 py-10 mx-auto">
 
-    <motion.div className="sm:max-w-[450px] w-full px-6 md:py-32 py-12 mx-auto flex flex-col items-center justify-center min-h-screen">
+    <motion.div className="sm:max-w-[500px] w-full px-6 md:py-32 py-12 mx-auto flex flex-col items-center justify-center min-h-screen">
       <Timer />
       <TaskList />
     </motion.div>
+
     // </div>
   );
 }
