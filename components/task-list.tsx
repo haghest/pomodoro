@@ -116,6 +116,7 @@ export default function TaskList() {
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && addTask()}
+          className="text-sm"
         />
         <Button onClick={addTask} size="icon">
           <Plus />
