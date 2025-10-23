@@ -19,13 +19,13 @@ export default function Timer() {
     reset,
     switchMode,
     timeLeft,
-  } = useTimer(0.1, 5, 15); // ✅ long break
+  } = useTimer(25, 5, 15); // ✅ long break
 
   const [focusSessions, setFocusSessions] = useState(0);
 
   // 🔁 Reset waktu sesuai mode
   useEffect(() => {
-    if (mode === "focus") reset(0.1);
+    if (mode === "focus") reset(25);
     else if (mode === "break") reset(5);
     else reset(15);
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -66,7 +66,7 @@ export default function Timer() {
 
       // beri sedikit jeda biar efeknya smooth
       const timeout = setTimeout(() => {
-        if (mode === "focus") reset(0.1);
+        if (mode === "focus") reset(25);
         else if (mode === "break") reset(5);
         else reset(15);
       }, 1000);
@@ -78,7 +78,7 @@ export default function Timer() {
   // 🧩 Fix utama: reset otomatis kalau user tekan Start saat waktu 0
   const handleStart = () => {
     if (timeLeft === 0) {
-      if (mode === "focus") reset(0.1);
+      if (mode === "focus") reset(25);
       else if (mode === "break") reset(5);
       else reset(15);
       // beri sedikit delay supaya reset selesai dulu
@@ -126,7 +126,7 @@ export default function Timer() {
             <Button
               variant="outline"
               onClick={() =>
-                reset(mode === "focus" ? 0.1 : mode === "break" ? 5 : 15)
+                reset(mode === "focus" ? 25 : mode === "break" ? 5 : 15)
               }
             >
               <RotateCcw />
