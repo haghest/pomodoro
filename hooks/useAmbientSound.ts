@@ -13,6 +13,8 @@ export function useAmbientSound() {
     cafe: "/sounds/cafe.mp3",
     fire: "/sounds/fire.mp3",
     ocean: "/sounds/ocean.mp3",
+    night: "/sounds/night.mp3",
+    train: "/sounds/train.mp3",
   };
 
   // Main audio effect

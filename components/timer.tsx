@@ -7,6 +7,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { RotateCcw } from "lucide-react";
 import { ModeToggle } from "@/components/theme-toggle";
+import { SettingsModal } from "./settings-modal";
 
 export default function Timer() {
   const {
@@ -19,7 +20,7 @@ export default function Timer() {
     reset,
     switchMode,
     timeLeft,
-  } = useTimer(25, 5, 15); // ✅ long break
+  } = useTimer(0.1, 5, 15); // ✅ long break
 
   const [focusSessions, setFocusSessions] = useState(0);
 
@@ -66,7 +67,7 @@ export default function Timer() {
 
       // beri sedikit jeda biar efeknya smooth
       const timeout = setTimeout(() => {
-        if (mode === "focus") reset(25);
+        if (mode === "focus") reset(0.1);
         else if (mode === "break") reset(5);
         else reset(15);
       }, 1000);
@@ -78,7 +79,7 @@ export default function Timer() {
   // 🧩 Fix utama: reset otomatis kalau user tekan Start saat waktu 0
   const handleStart = () => {
     if (timeLeft === 0) {
-      if (mode === "focus") reset(25);
+      if (mode === "focus") reset(0.1);
       else if (mode === "break") reset(5);
       else reset(15);
       // beri sedikit delay supaya reset selesai dulu
@@ -89,7 +90,7 @@ export default function Timer() {
   };
 
   return (
-    <div>
+    <div className="w-full">
       <Tabs
         value={mode}
         onValueChange={(val) =>
@@ -106,7 +107,7 @@ export default function Timer() {
 
       <Card className="rounded-xl text-center p-6 relative">
         <div className="absolute top-2 right-2">
-          <ModeToggle />
+          <SettingsModal />
         </div>
 
         <CardContent>
@@ -126,23 +127,23 @@ export default function Timer() {
             <Button
               variant="outline"
               onClick={() =>
-                reset(mode === "focus" ? 25 : mode === "break" ? 5 : 15)
+                reset(mode === "focus" ? 0.1 : mode === "break" ? 5 : 15)
               }
             >
               <RotateCcw />
             </Button>
           </div>
 
-          <p className="mt-4 text-sm text-muted-foreground">
+          {/*<p className="mt-4 text-sm text-muted-foreground">
             Mode:{" "}
             {mode === "focus"
               ? "Focus (25:00)"
               : mode === "break"
                 ? "Break (5:00)"
                 : "Long Break (15:00)"}
-          </p>
+          </p>*/}
 
-          <p className="mt-2 text-xs text-muted-foreground">
+          <p className="mt-4 text-xs text-muted-foreground">
             🔥 Streak: {focusSessions}
           </p>
         </CardContent>

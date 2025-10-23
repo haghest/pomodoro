@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { updateDailyLog } from "@/hooks/useDailyLog";
 
 type Mode = "focus" | "break" | "longBreak";
 
@@ -20,6 +21,13 @@ export function useTimer(
   useEffect(() => {
     focusAudioRef.current = new Audio("/finish.mp3");
     breakAudioRef.current = new Audio("/finish.mp3");
+  }, []);
+
+  // 🔔 Minta izin notifikasi saat pertama kali digunakan
+  useEffect(() => {
+    if ("Notification" in window && Notification.permission === "default") {
+      Notification.requestPermission().catch(() => {});
+    }
   }, []);
 
   // ▶️ Controls
@@ -79,15 +87,38 @@ export function useTimer(
     };
   }, [isRunning]);
 
-  // 🔔 Handle waktu habis
+  // 🎯 Kirim notifikasi + bunyi saat waktu habis
   useEffect(() => {
     if (timeLeft === 0 && isRunning && !didFinishRef.current) {
       didFinishRef.current = true;
+
       setTimeout(() => {
         setIsRunning(false);
         const audio =
           mode === "focus" ? focusAudioRef.current : breakAudioRef.current;
         audio?.play().catch(() => {});
+
+        // 🔔 Tampilkan notifikasi jika diizinkan
+        if ("Notification" in window && Notification.permission === "granted") {
+          let title = "";
+          let body = "";
+
+          if (mode === "focus") {
+            title = "Fokus Selesai!";
+            body = "Waktunya istirahat sebentar ☕";
+          } else if (mode === "break") {
+            title = "Break Selesai!";
+            body = "Yuk kembali fokus 💻";
+          } else {
+            title = "Long Break Selesai!";
+            body = "Waktunya kembali produktif! 🚀";
+          }
+
+          new Notification(title, {
+            body,
+            icon: "/tomato.png", // tambahkan icon PWA kamu kalau ada
+          });
+        }
       }, 0);
     }
   }, [timeLeft, isRunning, mode]);

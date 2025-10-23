@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import { AmbientSound } from "@/components/ambient-sound";
 import Timer from "@/components/timer";
 import TaskList from "@/components/task-list";
 
@@ -16,8 +15,9 @@ export default function PomodoroPage() {
     //         : "bg-white dark:bg-green-900"
     //   }`}
     // >
-    <motion.div className="sm:max-w-[450px]  w-full px-6 py-10 mx-auto">
-      <AmbientSound />
+    // <motion.div className="sm:max-w-[450px]  w-full px-6 py-10 mx-auto">
+
+    <motion.div className="sm:max-w-[450px] w-full px-6 md:py-32 py-12 mx-auto flex flex-col items-center justify-center min-h-screen">
       <Timer />
       <TaskList />
     </motion.div>
