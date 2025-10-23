@@ -73,7 +73,7 @@ export function SettingsModal() {
             className="flex items-center gap-2"
             size="icon"
           >
-            <Ellipsis className="size-4" />
+            <Settings className="size-4" />
           </Button>
         </DialogTrigger>
 
