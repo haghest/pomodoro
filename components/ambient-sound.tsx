@@ -56,62 +56,64 @@ export function AmbientSound() {
   }, [sound, isPlaying]);
 
   return (
-    <div className="w-full flex flex-col gap-3 my-6">
-      {/* Tombol Ambient */}
-      <div className="grid grid-cols-2 gap-2">
-        {sounds.map((s) => (
-          <Button
-            key={s.id}
-            variant={sound === s.id ? "default" : "outline"}
-            className="flex items-center gap-2 w-full"
-            onClick={() => {
-              if (sound === s.id && isPlaying) {
-                // klik lagi = stop sepenuhnya
-                stopSound();
-              } else {
-                setSound(s.id);
-                setIsPlaying(true);
-              }
-            }}
-          >
-            {sound === s.id && isPlaying && (
-              <motion.span
-                initial={{ opacity: 0, scale: 0.2 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.2 }}
-              >
-                <Volume2 className="size-4" />
-              </motion.span>
-            )}
-            {s.label}
-          </Button>
-        ))}
-      </div>
+    <>
+      <div className="flex flex-col gap-3 my-6">
+        {/* Tombol Ambient */}
+        <div className="grid grid-cols-2 gap-2 w-full">
+          {sounds.map((s) => (
+            <Button
+              key={s.id}
+              variant={sound === s.id ? "default" : "outline"}
+              className="flex items-center gap-2 w-full"
+              onClick={() => {
+                if (sound === s.id && isPlaying) {
+                  // klik lagi = stop sepenuhnya
+                  stopSound();
+                } else {
+                  setSound(s.id);
+                  setIsPlaying(true);
+                }
+              }}
+            >
+              {sound === s.id && isPlaying && (
+                <motion.span
+                  initial={{ opacity: 0, scale: 0.2 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Volume2 className="size-4" />
+                </motion.span>
+              )}
+              {s.label}
+            </Button>
+          ))}
+        </div>
 
-      {/* Slider muncul hanya jika ada sound aktif */}
-      <AnimatePresence mode="popLayout">
-        {sound && (
-          <motion.div
-            key="controls"
-            layout
-            initial={{ opacity: 0, scaleY: 0.9 }}
-            animate={{ opacity: 1, scaleY: 1 }}
-            exit={{ opacity: 0, scaleY: 0.9 }}
-            transition={{
-              duration: 0.3,
-              ease: [0.25, 0.1, 0.25, 1], // natural ease
-            }}
-            className="flex items-center justify-center gap-2 mt-2 w-full"
-          >
-            <Slider
-              value={[volume * 100]}
-              onValueChange={(val) => setVolume(val[0] / 100)}
-              className="w-full"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
+        {/* Slider muncul hanya jika ada sound aktif */}
+        <AnimatePresence mode="popLayout">
+          {sound && (
+            <motion.div
+              key="controls"
+              layout
+              initial={{ opacity: 0, scaleY: 0.9 }}
+              animate={{ opacity: 1, scaleY: 1 }}
+              exit={{ opacity: 0, scaleY: 0.9 }}
+              transition={{
+                duration: 0.3,
+                ease: [0.25, 0.1, 0.25, 1], // natural ease
+              }}
+              className="flex items-center justify-center gap-2 mt-2 w-full"
+            >
+              <Slider
+                value={[volume * 100]}
+                onValueChange={(val) => setVolume(val[0] / 100)}
+                className="w-full"
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </>
   );
 }
