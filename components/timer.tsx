@@ -133,7 +133,7 @@ export default function Timer() {
             </Button>
           </div>
           <p className="mt-4 text-xs text-muted-foreground select-none">
-            🔥 Session streak: {focusSessions}
+            🔥 Today's streak: {focusSessions}
           </p>
         </CardContent>
       </Card>
